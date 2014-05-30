@@ -95,26 +95,81 @@
 				<source src="<?php echo THEMEPATH; ?>vid/enso_paneles.mp4" type="video/mp4">
 			</video>
 			<div class="columna xmall-12 medium-6 servicios">
-				<div class="columna xmall-4 medium-3 center">
-					<img src="<?php echo THEMEPATH; ?>images/menu_v2_01.png">
-				</div>
+				<?php
+				$panelesArgs = array(
+					'category_name' 	=> 'paneles',
+					'posts_per_page' 	=> 2
+				); 
+				$panelesQuery = new WP_Query($panelesArgs);
 
-				<h3>Interconectados a la red de CFE</h3>
+				if( $panelesQuery->have_posts() ) : while( $panelesQuery->have_posts() ) : $panelesQuery->the_post(); ?>
+					
+					<div class="columna xmall-4 medium-3 center">
+						<img src="<?php echo THEMEPATH; ?>images/menu_v2_01.png">
+					</div>
+
+					<h3 class="text-center" >
+						<?php the_title(); ?>
+					</h3>
+					<hr>
+					<div class="columna c-8 medium-10 small-12 center">
+						<?php the_content(); ?>
+					</div>
+					<div class="columna medium-2 center">
+						<a class="block text-center flecha" href="#">
+							<i class="fa fa-arrow-circle-down"></i>
+						</a>
+					</div>
+
+				<?php endwhile; endif; wp_reset_query(); ?>	
+
+
+
+				<?php
+				/*$interconectados = get_page_by_title( 'Interconectados a la red de CFE' );
+				$interconectadosId = $interconectados->ID;
+				$interconectadosContent = $interconectados->post_content;
+				$interconectadosTitle = $interconectados->post_title;*/
+				?>
+
+				<!-- <h3 class="text-center" >
+					<?php //echo $interconectadosTitle; ?>
+				</h3>
 				<hr>
-				<p>Estos sistemas no necesitan respaldo de baterías para almacenar la energía producida durante el día. La energía eléctrica producida por medio del sol, es interconectada a la red eléctrica de la compañía de luz, de esta manera, cuando es de noche o en días nublados, la compañía seguirá suministrando la electricidad necesaria en el hogar o negocio. Lo importante aquí, es cambiar mediante un sencillo trámite, el medidor convencional por uno llamado BIDIRECCIONAL, también suministrado por CFE. Con este medidor, la energía excedente que se produzca durante el día y que se va por la red, es contabilizada a favor del propietario del sistema, por lo que cada uno de los KWH producidos mediante el sol, son aprovechados.</p>
+
+				<p class="columna c-8 medium-10 small-12 center">
+					<?php
+						// echo $interconectadosContent;
+					?>
+				</p>
+
 				<div class="columna medium-2 center">
 					<a class="block text-center flecha" href="#">
 						<i class="fa fa-arrow-circle-down"></i>
 					</a>
-				</div>
+				</div> -->
 			</div>
 			<div class="columna xmall-12 medium-6 servicios">
 				<div class="columna xmall-4 medium-3 center">
 					<img src="<?php echo THEMEPATH; ?>images/menu_v2_01.png">
 				</div>
-				<h3>Aislados o autónomos.</h3>
+				<?php
+				$aislados = get_page_by_title( 'Aislados o autónomos' );
+				$aisladosId = $aislados->ID;
+				$aisladosContent = $aislados->post_content;
+				$aisladosTitle = $aislados->post_title;
+				?>
+
+				<h3 class="text-center" >
+					<?php echo $aisladosTitle; ?>
+				</h3>
 				<hr>
-				<p>Estos sistemas son utilizados cuando no existe manera de conectar el sistema solar a la red de CFE. A diferencia de los interconectados, los sistemas autónomos requieren baterías de respaldo para almacenar la electricidad producida durante el día por medio del sol. Son ideales para ranchos, casas de campo, cabañas, etc. y para cualquier lugar donde se requiera electricidad y no haya acceso a la red de la compañía de luz.</p>
+
+				<p class="columna c-8 medium-10 small-12 center">
+					<?php
+						echo $aisladosContent;
+					?>
+				</p>
 				<div class="columna medium-2 center">
 					<a class="block text-center flecha" href="#">
 						<i class="fa fa-arrow-circle-down"></i>
@@ -138,9 +193,23 @@
 				<div class="columna xmall-4 medium-3 center">
 					<img src="<?php echo THEMEPATH; ?>images/menu_v2_03.png">
 				</div>
-				<h3>Línea CH</h3>
+				<?php
+				$lineaCH = get_page_by_title( 'Línea CH' );
+				$lineaCHId = $lineaCH->ID;
+				$lineaCHContent = $lineaCH->post_content;
+				$lineaCHTitle = $lineaCH->post_title;
+				?>
+
+				<h3 class="text-center" >
+					<?php echo $lineaCHTitle; ?>
+				</h3>
 				<hr>
-				<p>La línea CH cuenta con tanque exterior, estructura y reflectores en acero inoxidable. El tanque interior es de acero de titanio porcenalizado. Su característica más destacable, es que no requiere que haya un boiler de gas o eléctrico de respaldo, ya que cuenta en su tanque interno con una resistencia eléctrica que calienta el agua por medio de electricidad cuando es necesario. Esta resistencia es controlada por medio de un panel digital que se programa de manera automática o se controla manualmente para que nunca falta agua caliente en el hogar.</p>
+
+				<p class="columna c-8 medium-10 small-12 center">
+					<?php
+						echo $lineaCHContent;
+					?>
+				</p>
 				<div class="columna medium-2 center">
 					<a class="block text-center flecha" href="#">
 						<i class="fa fa-arrow-circle-down"></i>
@@ -151,9 +220,23 @@
 				<div class="columna xmall-4 medium-3 center">
 					<img src="<?php echo THEMEPATH; ?>images/menu_v2_03.png">
 				</div>
-				<h3>Línea EH</h3>
+				<?php
+				$lineaEH = get_page_by_title( 'Línea EH' );
+				$lineaEHId = $lineaEH->ID;
+				$lineaEHContent = $lineaEH->post_content;
+				$lineaEHTitle = $lineaEH->post_title;
+				?>
+
+				<h3 class="text-center" >
+					<?php echo $lineaEHTitle; ?>
+				</h3>
 				<hr>
-				<p>La línea EH se recomienda cuando ya existe un boiler de gas o eléctrico de respaldo. Cuenta con tanque exterior y estructura de acero de zinc galvanizado. El tanque interior es de acero inoxidable 304- 2B (grado alimenticio). </p>
+
+				<p class="columna c-8 medium-10 small-12 center">
+					<?php
+						echo $lineaEHContent;
+					?>
+				</p>
 				<div class="columna medium-2 center">
 					<a class="block text-center flecha" href="#">
 						<i class="fa fa-arrow-circle-down"></i>

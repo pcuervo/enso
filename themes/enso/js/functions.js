@@ -6,7 +6,7 @@
 
 		// Imágen de fondo en home
 		$('#intro').css('height', $(window).height());
-		$('#intro').backstretch("../enso/wp-content/themes/enso/images/back03.png");
+		$('#intro').backstretch("http://www.ensoenergia.com/wp-content/themes/enso/images/back03.png");
 
 		// Validar emails
 		validarEmail();
@@ -141,7 +141,7 @@
 		  return marker = new google.maps.Marker({
 		    position: new google.maps.LatLng(25.5496, -103.4464),
 		    map: map,
-		    icon: "../enso/wp-content/themes/enso/images/pin.png"
+		    icon: "http://www.ensoenergia.com/wp-content/themes/enso/images/pin.png"
 		  });
 		};
 
