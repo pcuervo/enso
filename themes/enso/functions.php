@@ -245,3 +245,39 @@
 			OR isset($query->post_title) AND preg_match("/$string/i", remove_accents(str_replace(' ', '-', $query->post_title) ) ) )
 			echo 'active';
 	}
+
+	/**
+	 * Procesa la forma de contacto
+	 * @return json
+	 */
+	function procesa_contacto(){
+		$nombre = $_POST['nombre'];
+		$telefono = $_POST['telefono'];
+		$email = $_POST['email'];
+		$ciudad = $_POST['ciudad'];
+		$consumo = $_POST['consumo'];
+
+		$to = 'miguel@pcuervo.com';
+		$subject = $nombre.' te ha contactado';
+		$headers = 'From: My Name <miguel@pcuervo.com>' . "\r\n";
+		$message = '<html><body>';
+		$message .= '<h1>Cálculo de ahorro</h1>';
+		$message .= '<p>Nombre: '.$nombre.'</p>';
+		$message .= '<p>Email: '. $email . '</p>';
+		$message .= '<p>Teléfono: '. $telefono . '</p>';
+		$message .= '<p>Ciudad: '. $ciudad . '</p>';
+		$message .= '<p>Consumo: '. $consumo . '</p>';
+		$message .= '</body></html>';
+
+		add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
+		wp_mail($to, $subject, $message, $headers );
+		//$nombre = $_POST['nombre'];
+		//$text = array('nombre' => $datos);
+		$msg = ['nombre' => $nombre];
+		echo json_encode($msg);
+		exit;
+	}
+	add_action('wp_ajax_procesa_contacto', 'procesa_contacto');
+	add_action('wp_ajax_nopriv_procesa_contacto', 'procesa_contacto');
+
+	

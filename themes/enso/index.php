@@ -64,9 +64,23 @@
 
 	<div class="width clearfix">
 		<div id="nosotros" class="section">
-			<h2>NOSOTROS</h2>
+			<?php
+			$nosotros = get_page_by_title( 'nosotros' );
+			$nosotrosId = $nosotros->ID;
+			$nosotrosContent = $nosotros->post_content;
+			$nosotrosTitle = $nosotros->post_title;
+			?>
+
+			<h2 class="text-center" >
+				<?php echo $nosotrosTitle; ?>
+			</h2>
 			<hr>
-			<p>Enso Energía es una empresa mexicana fundada en la ciudad de Torreón Coahuila en el año 2013. Nos dedicamos a la comercialización e instalación de sistemas de generación de energía renovable, principalmente a través de la energía solar. Somos especialistas en proyectos de generación de energía eléctrica a través de paneles solares (energía solar fotovoltaica) y en el diseño y comercialización de equipos de calentamiento solar de agua (energía solar térmica).</p>
+
+			<p class="columna c-8 medium-10 small-12 center">
+				<?php
+					echo $nosotrosContent;
+				?>
+			</p>
 		</div><!-- nosotros -->
 	</div>
 	
@@ -78,7 +92,7 @@
 			<h2>PANELES SOLARES</h2>
 			<hr>
 			<video class="columna full" controls>
-				<source src="vid/enso_paneles.mp4" type="video/mp4">
+				<source src="<?php echo THEMEPATH; ?>vid/enso_paneles.mp4" type="video/mp4">
 			</video>
 			<div class="columna xmall-12 medium-6 servicios">
 				<div class="columna xmall-4 medium-3 center">
@@ -89,7 +103,7 @@
 				<hr>
 				<p>Estos sistemas no necesitan respaldo de baterías para almacenar la energía producida durante el día. La energía eléctrica producida por medio del sol, es interconectada a la red eléctrica de la compañía de luz, de esta manera, cuando es de noche o en días nublados, la compañía seguirá suministrando la electricidad necesaria en el hogar o negocio. Lo importante aquí, es cambiar mediante un sencillo trámite, el medidor convencional por uno llamado BIDIRECCIONAL, también suministrado por CFE. Con este medidor, la energía excedente que se produzca durante el día y que se va por la red, es contabilizada a favor del propietario del sistema, por lo que cada uno de los KWH producidos mediante el sol, son aprovechados.</p>
 				<div class="columna medium-2 center">
-					<a class="block text-center" href="#">
+					<a class="block text-center flecha" href="#">
 						<i class="fa fa-arrow-circle-down"></i>
 					</a>
 				</div>
@@ -102,7 +116,7 @@
 				<hr>
 				<p>Estos sistemas son utilizados cuando no existe manera de conectar el sistema solar a la red de CFE. A diferencia de los interconectados, los sistemas autónomos requieren baterías de respaldo para almacenar la electricidad producida durante el día por medio del sol. Son ideales para ranchos, casas de campo, cabañas, etc. y para cualquier lugar donde se requiera electricidad y no haya acceso a la red de la compañía de luz.</p>
 				<div class="columna medium-2 center">
-					<a class="block text-center" href="#">
+					<a class="block text-center flecha" href="#">
 						<i class="fa fa-arrow-circle-down"></i>
 					</a>
 				</div>
@@ -118,7 +132,7 @@
 			<h2>BOILERS SOLARES</h2>
 			<hr>
 			<video class="columna full" controls>
-				<source src="vid/enso_calentadores.mp4" type="video/mp4">
+				<source src="<?php echo THEMEPATH; ?>vid/enso_calentadores.mp4" type="video/mp4">
 			</video>
 			<div class="columna xmall-12 medium-6 servicios">
 				<div class="columna xmall-4 medium-3 center">
@@ -128,7 +142,7 @@
 				<hr>
 				<p>La línea CH cuenta con tanque exterior, estructura y reflectores en acero inoxidable. El tanque interior es de acero de titanio porcenalizado. Su característica más destacable, es que no requiere que haya un boiler de gas o eléctrico de respaldo, ya que cuenta en su tanque interno con una resistencia eléctrica que calienta el agua por medio de electricidad cuando es necesario. Esta resistencia es controlada por medio de un panel digital que se programa de manera automática o se controla manualmente para que nunca falta agua caliente en el hogar.</p>
 				<div class="columna medium-2 center">
-					<a class="block text-center" href="#">
+					<a class="block text-center flecha" href="#">
 						<i class="fa fa-arrow-circle-down"></i>
 					</a>
 				</div>
@@ -141,7 +155,7 @@
 				<hr>
 				<p>La línea EH se recomienda cuando ya existe un boiler de gas o eléctrico de respaldo. Cuenta con tanque exterior y estructura de acero de zinc galvanizado. El tanque interior es de acero inoxidable 304- 2B (grado alimenticio). </p>
 				<div class="columna medium-2 center">
-					<a class="block text-center" href="#">
+					<a class="block text-center flecha" href="#">
 						<i class="fa fa-arrow-circle-down"></i>
 					</a>
 				</div>
@@ -164,7 +178,7 @@
 			  	<hr>
 			  	<p>Los calentadores solares de polipropileno UV con protección Sun Guard, son piezas diseñadas y fabricadas bajo altos estándares de calidad con tecnología de punta y desarrollo de materiales para sistemas de calentamiento de agua a través del aprovechamiento de los rayos solares.</p>
 			  	<div class="columna medium-2 center">
-					<a class="block text-center" href="#">
+					<a class="block text-center flecha" href="#">
 						<i class="fa fa-arrow-circle-down"></i>
 					</a>
 				</div>
@@ -177,7 +191,7 @@
 			  	<hr>
 			  	<p>Nuestros sistemas solares a gran escala, están diseñados para calentar grandes volúmenes de agua para comercios o industrias que le requieran. Son diseñados a la medida de las necesidades y son ideales para clubes deportivos, granjas avícolas, establos lecheros, hoteles, tortillerías, restaurantes, etc. </p>
 			  	<div class="columna medium-2 center">
-					<a class="block text-center" href="#">
+					<a class="block text-center flecha" href="#">
 						<i class="fa fa-arrow-circle-down"></i>
 					</a>
 				</div>
@@ -200,7 +214,7 @@
 			<hr>
 			<p>Calcula el ahorro que podrías tener con un sistema de energía solar. Consulta tu consumo diario en tu recibo de luz.</p>
 			<div class="columna full center cleafix">
-				<form name="projectplanner" method="post" id="projectplanner" action="php/submit.php">
+				<form name="projectplanner" method="post" class="contacto" id="projectplanner" enctype="multipart/form-data">
 					<div class="floating-placeholder">
 						<input id="name" name="name" type="text">
 						<label for="name">Nombre / Compañía</label>
@@ -221,15 +235,9 @@
 						<input id="consumo" name="consumo" type="text">
 						<label for="consumo">Consumo diario kW/h</label>
 					</div>
+					<input type="file" name="file" id="file">
+					<input class="columna c-4 center" type="submit" value="ENVIAR" >
 				</form>
-			</div>
-			<div style="padding-top: 20px;">
-			    <div class="send_btn files"><a href="">SUBIR RECIBO</a>
-			    	<input id="fileupload" type="file" name="files[]" data-url="server/php/" multiple>
-			    </div>
-			    <div class="send_btn">
-			    	<a href="javascript:document.getElementById('projectplanner').submit();">ENVIAR</a>
-			    </div>
 			</div>
 		</div><!-- ahorro -->
 	</div>

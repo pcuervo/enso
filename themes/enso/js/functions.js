@@ -21,8 +21,21 @@
 			escondeMenu();
 		});
 
+		// toggle info secciones
+		$("a.flecha").on('click', function(e){
+			e.preventDefault();
+			if($(this).parent().parent().find('p').css('display') == 'none'){
+				$(this).parent().parent().find('p').slideDown('slow');
+				$(this).find('i').addClass('rotar');
+			} else {	
+				$(this).parent().parent().find('p').slideUp('fast');
+				$(this).find('i').removeClass('rotar');
+			}
+		});
+
+
 		// scroll a secciones del menu
-		$(".main_nav_menu a").click(function(e) {
+		$(".main_nav_menu a, #intro a").click(function(e) {
 			e.preventDefault();
 			var id = $(this).attr('href');
 		   	scrollToAnchor(id);
@@ -32,6 +45,9 @@
 
 		// Google Maps
 		creaMapa();
+
+		// Enviar forma de contacto via AJAX
+		procesaContacto();
 		
 	});	
 	
@@ -131,6 +147,40 @@
 
 		google.maps.event.addDomListener(window, "load", initialize);
 	}
+	function procesaContacto(){
+		$('.contacto input[type="submit"]').on('click', function(e){
+			var nombre = $('input[name="name"').val();
+			var telefono = $('input[name="phone"').val();
+			var email = $('input[name="email"').val();
+			var ciudad = $('input[name="city"').val();
+			var consumo = $('input[name="consumo"').val();
+
+			e.preventDefault();
+			$.ajax({
+			  	type: 'POST',
+			  	url: ajax_url,
+			  	data: {
+			  		nombre: nombre,
+			  		email: email,
+			  		telefono: telefono, 
+			  		ciudad: ciudad, 
+			  		consumo: consumo,
+			  		action: "procesa_contacto"
+			  	},
+			  	success: function(data){
+			  		var json = $.parseJSON(data);
+			  		$('form').html('<p>Gracias por contactarnos '+json.nombre+', en breve nos pondremos en contacto contigo.</p>');
+			  	}
+			});
+		});
+	}
+
+	function toggleTexto(section){
+		$(section + " .flecha").on('click', function(){
+			$(this).parent().parent().find('p').slideDown('slow');
+		});
+	}
+
 
 
 })(jQuery);
