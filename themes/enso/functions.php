@@ -31,6 +31,32 @@
 		// styles
 		wp_enqueue_style( 'styles', get_stylesheet_uri() );
 
+		// URL de cover photos
+		$coverArgs = array(
+			'post_type' 		=> 'cover-photos',
+			'posts_per_page'	=> -1
+		);
+		$covers = array();
+		$coverQuery = new WP_Query($coverArgs);
+		if($coverQuery -> have_posts()) : while($coverQuery -> have_posts()) : $coverQuery ->the_post();
+
+			$imgUrl = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_id()), 'full' ) ;
+
+			$categoryArray = get_the_category(get_the_id());
+			$category = $categoryArray[0]->slug;
+
+			array_push(
+				$covers, 
+				array(
+					"category" 	=> $category, 
+					"url"		=> $imgUrl[0]
+				)
+			);
+
+		endwhile; endif; wp_reset_query();
+		wp_localize_script('functions', 'covers', $covers);
+
+		// URL de imagen de inicio
 	});
 
 
@@ -48,7 +74,7 @@
 		wp_localize_script( 'admin-js', 'ajax_url', admin_url('admin-ajax.php') );
 
 		// styles
-		wp_enqueue_style( 'admin-css', CSSPATH.'admin.css' );
+		wp_enqueue_style( 'admin-css', CSSPATH.'admin.css' );		
 
 	});
 
@@ -87,8 +113,8 @@
 
 
 	add_filter( 'admin_footer_text', function() {
-		echo 'Creado por <a href="http://hacemoscodigo.com">Los Maquiladores</a>. ';
-		echo 'Powered by <a href="http://www.wordpress.org">WordPress</a>';
+		//echo 'Creado por <a href="http://hacemoscodigo.com">Los Maquiladores</a>. ';
+		//echo 'Powered by <a href="http://www.wordpress.org">WordPress</a>';
 	});
 
 
@@ -154,9 +180,9 @@
 
 
 
-	/*add_filter('excerpt_length', function($length){
+	add_filter('excerpt_length', function($length){
 		return 20;
-	});*/
+	});
 
 
 	/*add_filter('excerpt_more', function(){
@@ -251,7 +277,7 @@
 	 * @return json
 	 */
 	function procesa_contacto(){
-		$nombre = $_POST['nombre'];
+		/*$nombre = $_POST['nombre'];
 		$telefono = $_POST['telefono'];
 		$email = $_POST['email'];
 		$ciudad = $_POST['ciudad'];
@@ -269,11 +295,21 @@
 		$message .= '<p>Consumo: '. $consumo . '</p>';
 		$message .= '</body></html>';
 
-		add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
-		wp_mail($to, $subject, $message, $headers );
+		add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));*/
+		//wp_mail($to, $subject, $message, $headers );
 		//$nombre = $_POST['nombre'];
 		//$text = array('nombre' => $datos);
-		$msg = ['nombre' => $nombre];
+
+		// FILE UPLOAD
+		$uploaddir = 'uploads/';
+		$uploadfile = $uploaddir . basename($_FILES['userfile']['name']);
+
+		if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
+		  $msg = ['nombre' => 'chicles'];
+		} else {
+		   $msg = ['nombre' => 'negros son tus ojos'];
+		}
+
 		echo json_encode($msg);
 		exit;
 	}

@@ -83,7 +83,7 @@
 			</p>
 		</div><!-- nosotros -->
 	</div>
-	
+
 	<div class="section cover">
 		<div id="paneles-bg"></div>
 	</div>
@@ -94,18 +94,20 @@
 			<video class="columna full" controls>
 				<source src="<?php echo THEMEPATH; ?>vid/enso_paneles.mp4" type="video/mp4">
 			</video>
-			<div class="columna xmall-12 medium-6 servicios">
-				<?php
-				$panelesArgs = array(
-					'category_name' 	=> 'paneles',
-					'posts_per_page' 	=> 2
-				); 
-				$panelesQuery = new WP_Query($panelesArgs);
+			
+			<?php
+			$panelesArgs = array(
+				'category_name' 	=> 'paneles',
+				'posts_per_page' 	=> 2
+			); 
+			$panelesQuery = new WP_Query($panelesArgs);
 
-				if( $panelesQuery->have_posts() ) : while( $panelesQuery->have_posts() ) : $panelesQuery->the_post(); ?>
+			if( $panelesQuery->have_posts() ) : while( $panelesQuery->have_posts() ) : $panelesQuery->the_post(); ?>
+
+				<div class="columna xmall-12 medium-6 servicios">
 					
 					<div class="columna xmall-4 medium-3 center">
-						<img src="<?php echo THEMEPATH; ?>images/menu_v2_01.png">
+						<?php the_post_thumbnail( "medium" ); ?>
 					</div>
 
 					<h3 class="text-center" >
@@ -120,62 +122,10 @@
 							<i class="fa fa-arrow-circle-down"></i>
 						</a>
 					</div>
-
-				<?php endwhile; endif; wp_reset_query(); ?>	
-
-
-
-				<?php
-				/*$interconectados = get_page_by_title( 'Interconectados a la red de CFE' );
-				$interconectadosId = $interconectados->ID;
-				$interconectadosContent = $interconectados->post_content;
-				$interconectadosTitle = $interconectados->post_title;*/
-				?>
-
-				<!-- <h3 class="text-center" >
-					<?php //echo $interconectadosTitle; ?>
-				</h3>
-				<hr>
-
-				<p class="columna c-8 medium-10 small-12 center">
-					<?php
-						// echo $interconectadosContent;
-					?>
-				</p>
-
-				<div class="columna medium-2 center">
-					<a class="block text-center flecha" href="#">
-						<i class="fa fa-arrow-circle-down"></i>
-					</a>
-				</div> -->
-			</div>
-			<div class="columna xmall-12 medium-6 servicios">
-				<div class="columna xmall-4 medium-3 center">
-					<img src="<?php echo THEMEPATH; ?>images/menu_v2_01.png">
 				</div>
-				<?php
-				$aislados = get_page_by_title( 'Aislados o autónomos' );
-				$aisladosId = $aislados->ID;
-				$aisladosContent = $aislados->post_content;
-				$aisladosTitle = $aislados->post_title;
-				?>
 
-				<h3 class="text-center" >
-					<?php echo $aisladosTitle; ?>
-				</h3>
-				<hr>
+			<?php endwhile; endif; wp_reset_query(); ?>	
 
-				<p class="columna c-8 medium-10 small-12 center">
-					<?php
-						echo $aisladosContent;
-					?>
-				</p>
-				<div class="columna medium-2 center">
-					<a class="block text-center flecha" href="#">
-						<i class="fa fa-arrow-circle-down"></i>
-					</a>
-				</div>
-			</div>
 		</div><!-- paneles -->
 	</div>
 	
@@ -189,60 +139,37 @@
 			<video class="columna full" controls>
 				<source src="<?php echo THEMEPATH; ?>vid/enso_calentadores.mp4" type="video/mp4">
 			</video>
-			<div class="columna xmall-12 medium-6 servicios">
-				<div class="columna xmall-4 medium-3 center">
-					<img src="<?php echo THEMEPATH; ?>images/menu_v2_03.png">
-				</div>
-				<?php
-				$lineaCH = get_page_by_title( 'Línea CH' );
-				$lineaCHId = $lineaCH->ID;
-				$lineaCHContent = $lineaCH->post_content;
-				$lineaCHTitle = $lineaCH->post_title;
-				?>
+			<?php
+			$boilersArgs = array(
+				'category_name' 	=> 'boilers',
+				'posts_per_page' 	=> 2
+			); 
+			$boilersQuery = new WP_Query($boilersArgs);
 
-				<h3 class="text-center" >
-					<?php echo $lineaCHTitle; ?>
-				</h3>
-				<hr>
+			if( $boilersQuery->have_posts() ) : while( $boilersQuery->have_posts() ) : $boilersQuery->the_post(); ?>
 
-				<p class="columna c-8 medium-10 small-12 center">
-					<?php
-						echo $lineaCHContent;
-					?>
-				</p>
-				<div class="columna medium-2 center">
-					<a class="block text-center flecha" href="#">
-						<i class="fa fa-arrow-circle-down"></i>
-					</a>
-				</div>
-			</div>
-			<div class="columna xmall-12 medium-6 servicios">
-				<div class="columna xmall-4 medium-3 center">
-					<img src="<?php echo THEMEPATH; ?>images/menu_v2_03.png">
-				</div>
-				<?php
-				$lineaEH = get_page_by_title( 'Línea EH' );
-				$lineaEHId = $lineaEH->ID;
-				$lineaEHContent = $lineaEH->post_content;
-				$lineaEHTitle = $lineaEH->post_title;
-				?>
+				<div class="columna xmall-12 medium-6 servicios">
+					
+					<div class="columna xmall-4 medium-3 center">
+						<?php the_post_thumbnail( "medium" ); ?>
+					</div>
 
-				<h3 class="text-center" >
-					<?php echo $lineaEHTitle; ?>
-				</h3>
-				<hr>
-
-				<p class="columna c-8 medium-10 small-12 center">
-					<?php
-						echo $lineaEHContent;
-					?>
-				</p>
-				<div class="columna medium-2 center">
-					<a class="block text-center flecha" href="#">
-						<i class="fa fa-arrow-circle-down"></i>
-					</a>
+					<h3 class="text-center" >
+						<?php the_title(); ?>
+					</h3>
+					<hr>
+					<div class="columna c-8 medium-10 small-12 center">
+						<?php the_content(); ?>
+					</div>
+					<div class="columna medium-2 center">
+						<a class="block text-center flecha" href="#">
+							<i class="fa fa-arrow-circle-down"></i>
+						</a>
+					</div>
 				</div>
-			</div>
+
+			<?php endwhile; endif; wp_reset_query(); ?>	
+
 		</div><!-- calentadores -->
 	</div>
 
@@ -253,51 +180,86 @@
 		<div id="albercas" class="section">
 			<h2>ALBERCAS</h2>
 			<hr>
-			<div class="columna xmall-12 medium-6 servicios">
-				<div class="columna xmall-4 medium-3 center">
-					<img src="<?php echo THEMEPATH; ?>images/menu_v2_03.png">
+			<?php
+			$fotoAlbercas = get_page_by_title( 'Fotos Albercas', OBJECT, 'post' );
+			$fotoAlbercasId = $fotoAlbercas->ID;
+
+			$albercasArgs = array(
+				'category_name' 	=> 'albercas',
+				'post__not_in' => array($fotoAlbercasId),
+				'posts_per_page' 	=> 2
+			); 
+			$albercasQuery = new WP_Query($albercasArgs);
+
+			if( $albercasQuery->have_posts() ) : while( $albercasQuery->have_posts() ) : $albercasQuery->the_post(); ?>
+				
+				<div class="columna xmall-12 medium-6 servicios">
+					
+					<div class="columna xmall-4 medium-3 center">
+						<?php the_post_thumbnail( "medium" ); ?>
+					</div>
+
+					<h3 class="text-center" >
+						<?php the_title(); ?>
+					</h3>
+					<hr>
+					<div class="columna c-8 medium-10 small-12 center">
+						<?php the_content(); ?>
+					</div>
+					<div class="columna medium-2 center">
+						<a class="block text-center flecha" href="#">
+							<i class="fa fa-arrow-circle-down"></i>
+						</a>
+					</div>
 				</div>
-			  	<h3>Albercas Climatizadas</h3>
-			  	<hr>
-			  	<p>Los calentadores solares de polipropileno UV con protección Sun Guard, son piezas diseñadas y fabricadas bajo altos estándares de calidad con tecnología de punta y desarrollo de materiales para sistemas de calentamiento de agua a través del aprovechamiento de los rayos solares.</p>
-			  	<div class="columna medium-2 center">
-					<a class="block text-center flecha" href="#">
-						<i class="fa fa-arrow-circle-down"></i>
-					</a>
-				</div>
-			</div>
-			<div class="columna xmall-12 medium-6 servicios">
-				<div class="columna xmall-4 medium-3 center">
-					<img src="<?php echo THEMEPATH; ?>images/menu_v2_03.png">
-				</div>
-			  	<h3>Calentamiento de agua gran escala</h3>
-			  	<hr>
-			  	<p>Nuestros sistemas solares a gran escala, están diseñados para calentar grandes volúmenes de agua para comercios o industrias que le requieran. Son diseñados a la medida de las necesidades y son ideales para clubes deportivos, granjas avícolas, establos lecheros, hoteles, tortillerías, restaurantes, etc. </p>
-			  	<div class="columna medium-2 center">
-					<a class="block text-center flecha" href="#">
-						<i class="fa fa-arrow-circle-down"></i>
-					</a>
-				</div>
-			</div>
-			<div class="columna xmall-10 full center">
-				<img class="columna medium-8 center block" src="<?php echo THEMEPATH; ?>images/albercas.jpg">
-				<img class="columna medium-8 center block" src="<?php echo THEMEPATH; ?>images/calentador.jpg">
-			</div>
+
+			<?php endwhile; endif; wp_reset_query();	
+
+			$attachmentsArgs = array(
+	            'post_type' => 'attachment',
+	            'posts_per_page' => -1,
+	            'post_parent' => $fotoAlbercasId
+	        );
+	        $attachments = get_posts($attachmentsArgs);
+
+	        if ( $attachments ) { ?>
+	        	<div class="columna full clearfix gallery">
+
+	        	<?php foreach ( $attachments as $attachment ) {
+	            	$imgUrl = wp_get_attachment_image_src($attachment->ID, 'full'); ?>    	
+					<img class="columna medium-6 block" src="<?php echo $imgUrl[0]; ?>">
+					
+				<?php } ?> 
+	        	</div>
+	        <?php } ?>
+
+			
 		</div><!-- albercas -->
 	</div>
 
 	<div class="clear"></div>
 
 	<div class="section cover">
-		<div id="calcula-bg"></div>
+		<div id="ahorro-bg"></div>
 	</div>
 	<div class="width clearix">
 		<div id="ahorro" class="section">
+		<?php 
+		$error = -1;
+		if(isset($_GET['er']))
+			$error = $_GET['er'];
+
+		if ($error == '0'){
+		?>
+			<p id="msg-contacto">Gracias por tu información, en breve nos pondremos en contacto contigo.</p>
+		<?php } else if ($error == '1' || $error == '2') { ?>
+			<p id="msg-contacto">El archivo excede el tamaño permitido de 3.5MB o no es tipo JPEG, PNG ó PDF.</p>
+		<?php }  ?>
 			<h2>CALCULA TU AHORRO</h2>
 			<hr>
 			<p>Calcula el ahorro que podrías tener con un sistema de energía solar. Consulta tu consumo diario en tu recibo de luz.</p>
 			<div class="columna full center cleafix">
-				<form name="projectplanner" method="post" class="contacto" id="projectplanner" enctype="multipart/form-data">
+				<form action="<?php echo THEMEPATH; ?>uploader.php" name="projectplanner" method="post" class="contacto" id="projectplanner" enctype="multipart/form-data">
 					<div class="floating-placeholder">
 						<input id="name" name="name" type="text">
 						<label for="name">Nombre / Compañía</label>
@@ -318,27 +280,44 @@
 						<input id="consumo" name="consumo" type="text">
 						<label for="consumo">Consumo diario kW/h</label>
 					</div>
-					<input type="file" name="file" id="file">
-					<input class="columna c-4 center" type="submit" value="ENVIAR" >
+					<input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+					<label class="instruccion-upload" for="userfile">Tamaño máximo: 3.5MB</label>
+					<laber class="instruccion-upload" for="userfile">Formatos permitidos: JPEG, PNG y PDF.</label>
+					<input class="columna xsmall-12 medium-4 center block" type="file" name="userfile" id="file">
+					<input class="columna xsmall-12 medium-4 center send-btn block" type="submit" value="ENVIAR" >
 				</form>
 			</div>
 		</div><!-- ahorro -->
 	</div>
 
 	<div class="section cover">
-		<div id="blog-bg"></div>
+		<div id="noticias-bg"></div>
 	</div>	
 	<div class="width clearfix">
 		<div id="blog" class="section">
 			<h2>NOTICIAS</h2>
 			<hr>
-		</div>
-		<div class="postsCont">
-			<div class="left"></div>
-			<div class="right"></div>
-			<div id="posts">
-				<div class="post"></div>
-			</div>
+		<?php
+		$noticiasArgs = array(
+			'category_name' 	=> 'noticias',
+			'posts_per_page' 	=> 6
+		);
+		$noticiasQuery = new WP_Query($noticiasArgs);
+
+		if( $noticiasQuery->have_posts() ) : while( $noticiasQuery->have_posts() ) : $noticiasQuery->the_post(); ?>
+
+			<div class="post columna xlarge-4 large-4 medium-6 small-12 xmall-12">
+
+				<a href="e/noticias/#blog"><?php the_post_thumbnail( 'medium' ); ?></a>
+
+				<div class="caja info">
+					<h3 class="text-center"><a href="e/noticias/#blog"><?php the_title(); ?></a></h3>
+					<hr>
+				</div><!-- caja -->
+
+			</div><!-- tercio -->
+
+		<?php endwhile; endif; wp_reset_query(); ?>
 		</div>
 	</div><!-- blog -->
 
@@ -349,23 +328,35 @@
 		<div id="contacto" class="section">
 			<h2>CONTACTO</h2>
 			<hr class="no-margin-bottom">
+
 			<div class="columna xmall-12 medium-6 servicios">
 			  	<address>
-			  		Teléfono: &nbsp; <a href="tel:8717138642"> 871 7 13 86 42</a><br><br>
-			  		Blvd. Independencia #123 Ote. Local 2 <br>
-			  		Torreón, Coah. México. C.P. 27140 
+			  		<?php
+					$contacto = get_page_by_title( 'contacto' );
+					$contactoId = $contacto->ID;
+					$tel = get_post_meta($contactoId, '_telefono_meta', true);
+					$dir1 = get_post_meta($contactoId, '_direccion1_meta', true);
+					$dir2 = get_post_meta($contactoId, '_direccion2_meta', true);
+					$facebook = get_post_meta($contactoId, '_facebook_meta', true);
+					$twitter = get_post_meta($contactoId, '_twitter_meta', true);
+					$correo = get_post_meta($contactoId, '_correo_meta', true);
+					?>
+					
+			  		Teléfono: &nbsp; <a href="tel:<?php echo $tel ?>"><?php echo $tel; ?></a><br><br>
+			  		<?php echo $dir1; ?><br>
+			  		<?php echo $dir2; ?>
 			  	</address>
 			</div>
 			<div class="columna xmall-12 medium-6 servicios">
 			  	<div class="socialCont">
 					<div class="columna full text-center">
-						<a target="_blank" href="https://www.facebook.com/pages/ENSO-Energ%C3%ADa-Solar/515080675254619" class="columna medium-4">
+						<a target="_blank" href="<?php echo $facebook; ?>" class="columna medium-4">
 							<i class="fa fa-facebook"></i>
 						</a>
-						<a target="_blank" href="https://twitter.com/ENSOenergia" class="columna medium-4">
+						<a target="_blank" href="<?php echo $twitter; ?>" class="columna medium-4">
 							<i class="fa fa-twitter"></i>
 						</a>
-						<a target="_blank" href="http://ensoenergia.com/mailto:contacto@ensoenergia.com" class="columna medium-4">
+						<a href="mailto:<?php echo $correo; ?>" class="columna medium-4">
 							<i class="fa fa-envelope"></i>
 						</a>
 					</div>

@@ -33,7 +33,6 @@
 			}
 		});
 
-
 		// scroll a secciones del menu
 		$(".main_nav_menu a, #intro a").click(function(e) {
 			e.preventDefault();
@@ -46,9 +45,20 @@
 		// Google Maps
 		creaMapa();
 
-		// Enviar forma de contacto via AJAX
-		procesaContacto();
-		
+		// Placeholders flotantes en contacto
+		$(".floating-placeholder input").keydown(updateText);
+  		$(".floating-placeholder input").change(updateText);
+
+  		$.each($('.cover'), function(i){
+  			var id = '#' + covers[i]['category'] + '-bg';
+  			var category = covers[i]['url'];
+  			setCoverImage(id, category);
+  		});
+
+  		$("input[type=file]").nicefileinput({ 
+			label : 'Subir Archivo' // Spanish label
+		});
+	
 	});	
 	
 	// Funciones
@@ -181,6 +191,20 @@
 		});
 	}
 
+	function updateText(event){
+	    var input=$(this);
+	    setTimeout(function(){
+	      	var val=input.val();
+	      	if(val!="")
+	        	input.parent().addClass("floating-placeholder-float");
+	      	else
+	        	input.parent().removeClass("floating-placeholder-float");
+	    },1)
+	}
+
+	function setCoverImage(id, url){
+		$(id).css('background-image', 'url('+url+')');
+	}
 
 
 })(jQuery);
