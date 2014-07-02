@@ -1,4 +1,23 @@
-<?php get_header(); ?>
+<?php 
+	use foundationphp\UploadFile;
+	get_header(); 
+	
+	$max = 50 * 1024;
+	$result = array();
+	if (isset($_POST['upload'])) {
+		require 'src/foundationphp/UploadFile.php';
+		$destination = __DIR__ . '/uploaded/';
+		//$destination = '../../uploads/';
+		try {
+			$upload = new UploadFile($destination);
+			//$upload->allowAllTypes();
+			$upload->upload();
+			$result = $upload->getMessages();
+		} catch (Exception $e) {
+			$result[] = $e->getMessage();
+		}
+	}
+?>
 <!-- Insert content here -->
 	<header class="full">
 		<div class="width clearfix">
@@ -254,12 +273,21 @@
 			<p id="msg-contacto">Gracias por tu información, en breve nos pondremos en contacto contigo.</p>
 		<?php } else if ($error == '1' || $error == '2') { ?>
 			<p id="msg-contacto">El archivo excede el tamaño permitido de 3.5MB o no es tipo JPEG, PNG ó PDF.</p>
-		<?php }  ?>
+		<?php }  
+			if ($result) { ?>
+				<ul class="result">
+			<?php  
+				foreach ($result as $message) {
+    				echo "<li>$message</li>";
+			}?>
+				</ul>
+		<?php } ?>
+
 			<h2>CALCULA TU AHORRO</h2>
 			<hr>
 			<p>Calcula el ahorro que podrías tener con un sistema de energía solar. Consulta tu consumo diario en tu recibo de luz.</p>
 			<div class="columna full center cleafix">
-				<form action="<?php echo THEMEPATH; ?>uploader.php" name="projectplanner" method="post" class="contacto" id="projectplanner" enctype="multipart/form-data">
+				<form action="<?php echo $_SERVER['PHP_SELF'].'#ahorro'; ?>" name="projectplanner" method="post" class="contacto" id="projectplanner" enctype="multipart/form-data">
 					<div class="floating-placeholder">
 						<input id="name" name="name" type="text">
 						<label for="name">Nombre / Compañía</label>
@@ -280,11 +308,11 @@
 						<input id="consumo" name="consumo" type="text">
 						<label for="consumo">Consumo diario kW/h</label>
 					</div>
-					<input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
+					<input type="hidden" name="MAX_FILE_SIZE" value="<? echo $max;?>" />
 					<label class="instruccion-upload" for="userfile">Tamaño máximo: 3.5MB</label>
 					<laber class="instruccion-upload" for="userfile">Formatos permitidos: JPEG, PNG y PDF.</label>
-					<input class="columna xsmall-12 medium-4 center block" type="file" name="userfile" id="file">
-					<input class="columna xsmall-12 medium-4 center send-btn block" type="submit" value="ENVIAR" >
+					<input class="columna xsmall-12 medium-4 center block" type="file" name="filename" id="filename">
+					<input class="columna xsmall-12 medium-4 center send-btn block" type="submit" name="upload" value="ENVIAR" >
 				</form>
 			</div>
 		</div><!-- ahorro -->
