@@ -2,7 +2,8 @@
 	use foundationphp\UploadFile;
 	get_header(); 
 	
-	$max = 50 * 1024;
+	$max = 1000 * 1024;
+	echo $max;
 	$result = array();
 	if (isset($_POST['upload'])) {
 		require 'src/foundationphp/UploadFile.php';
@@ -11,6 +12,7 @@
 		try {
 			$upload = new UploadFile($destination);
 			//$upload->allowAllTypes();
+			$upload->setMaxSize($max);
 			$upload->upload();
 			$result = $upload->getMessages();
 		} catch (Exception $e) {
@@ -287,7 +289,7 @@
 			<hr>
 			<p>Calcula el ahorro que podrías tener con un sistema de energía solar. Consulta tu consumo diario en tu recibo de luz.</p>
 			<div class="columna full center cleafix">
-				<form action="<?php echo $_SERVER['PHP_SELF'].'#ahorro'; ?>" name="projectplanner" method="post" class="contacto" id="projectplanner" enctype="multipart/form-data">
+				<form action="<?php echo $_SERVER['PHP_SELF'].'/#ahorro'; ?>" name="projectplanner" method="post" class="contacto" id="projectplanner" enctype="multipart/form-data">
 					<div class="floating-placeholder">
 						<input id="name" name="name" type="text">
 						<label for="name">Nombre / Compañía</label>
@@ -309,7 +311,7 @@
 						<label for="consumo">Consumo diario kW/h</label>
 					</div>
 					<input type="hidden" name="MAX_FILE_SIZE" value="<? echo $max;?>" />
-					<label class="instruccion-upload" for="userfile">Tamaño máximo: 3.5MB</label>
+					<label class="instruccion-upload" for="userfile">Tamaño máximo: 1.00MB</label>
 					<laber class="instruccion-upload" for="userfile">Formatos permitidos: JPEG, PNG y PDF.</label>
 					<input class="columna xsmall-12 medium-4 center block" type="file" name="filename" id="filename">
 					<input class="columna xsmall-12 medium-4 center send-btn block" type="submit" name="upload" value="ENVIAR" >

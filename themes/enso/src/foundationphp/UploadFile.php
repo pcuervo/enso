@@ -11,7 +11,8 @@ class UploadFile
 			'image/pjpeg',
 			'image/gif',
 			'image/png',
-			'image/webp'
+			'image/webp', 
+			'application/pdf'
 	);
 	protected $newName;
 	protected $typeCheckingOn = true;
@@ -131,17 +132,17 @@ class UploadFile
 		switch($file['error']) {
 			case 1:
 			case 2:
-				$this->messages[] = $file['name'] . ' is too big: (max: ' . 
+				$this->messages[] = $file['name'] . ' es demasiado grande: (max: ' . 
 				self::convertFromBytes($this->maxSize) . ').';
 				break;
 			case 3:
-				$this->messages[] = $file['name'] . ' was only partially uploaded.';
+				$this->messages[] = $file['name'] . ' se subió parcialmente.';
 				break;
 			case 4:
-				$this->messages[] = 'No file submitted.';
+				$this->messages[] = 'No se mandó el archivo.';
 				break;
 			default:
-				$this->messages[] = 'Sorry, there was a problem uploading ' . $file['name'];
+				$this->messages[] = 'Lo sentimos, hubo un problema al subir el archivo ' . $file['name'];
 				break;
 		}
 	}
@@ -149,10 +150,10 @@ class UploadFile
 	protected function checkSize($file)
 	{
 		if ($file['size'] == 0) {
-			$this->messages[] = $file['name'] . ' is empty.';
+			$this->messages[] = $file['name'] . ' está vacío.';
 			return false;
 		} elseif ($file['size'] > $this->maxSize) {
-			$this->messages[] = $file['name'] . ' exceeds the maximum size for a file ('
+			$this->messages[] = $file['name'] . ' excede el tamaño máximo para un archivo ('
 					. self::convertFromBytes($this->maxSize) . ').';
 			return false;
 		} else {
@@ -165,7 +166,7 @@ class UploadFile
 		if (in_array($file['type'], $this->permittedTypes)) {
 			return true;
 		} else {
-			$this->messages[] = $file['name'] . ' is not permitted type of file.';
+			$this->messages[] = $file['name'] . ' no es un tipo de archivo válido.';
 			return false;
 		}
 	}
@@ -207,14 +208,14 @@ class UploadFile
 		$filename = isset($this->newName) ? $this->newName : $file['name'];
 		$success = move_uploaded_file($file['tmp_name'], $this->destination . $filename);
 		if ($success) {
-			$result = $file['name'] . ' was uploaded successfully';
+			$result = $file['name'] . ' fue subido con éxito.';
 			if (!is_null($this->newName)) {
-				$result .= ', and was renamed ' . $this->newName;
+				$result .= ', y fue renombrado ' . $this->newName;
 			}
 			$result .= '.';
 			$this->messages[] = $result;
 		} else {
-			$this->messages[] = 'Could not upload ' . $file['name'];
+			$this->messages[] = 'No se pudo subir ' . $file['name'];
 		}
 	}
 }
