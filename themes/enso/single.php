@@ -72,7 +72,7 @@
 					<?php the_post_thumbnail( 'medium' ); ?>
 				</div>
 				<div class="caja info">
-					<p><?php the_content(); ?>
+					<p><?php the_content(); ?></p>
 				</div><!-- caja -->
 
 			</div><!-- tercio -->
