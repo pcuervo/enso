@@ -15,6 +15,7 @@ class UploadFile
 			'application/pdf'
 	);
 	protected $newName;
+	protected $fileName;
 	protected $typeCheckingOn = true;
 	protected $notTrusted = array('bin', 'cgi', 'exe', 'js', 'pl', 'php', 'py', 'sh');
 	protected $suffix = '.upload';
@@ -89,6 +90,7 @@ class UploadFile
 		if (is_array($uploaded['name'])) {
 			foreach ($uploaded['name'] as $key => $value) {
 				$currentFile['name'] = $uploaded['name'][$key];
+				$this->fileName = $currentFile['name'] ;
 				$currentFile['type'] = $uploaded['type'][$key];
 				$currentFile['tmp_name'] = $uploaded['tmp_name'][$key];
 				$currentFile['error'] = $uploaded['error'][$key];
@@ -133,7 +135,7 @@ class UploadFile
 			case 1:
 			case 2:
 				$this->messages[] = $file['name'] . ' es demasiado grande: (max: ' . 
-				self::convertFromBytes($this->maxSize) . ').';
+				self::convertFromBytes($this->maxSize) . ') ';
 				break;
 			case 3:
 				$this->messages[] = $file['name'] . ' se subió parcialmente.';
@@ -208,14 +210,19 @@ class UploadFile
 		$filename = isset($this->newName) ? $this->newName : $file['name'];
 		$success = move_uploaded_file($file['tmp_name'], $this->destination . $filename);
 		if ($success) {
-			$result = $file['name'] . ' fue subido con éxito.';
+			$result = $file['name'] . ' fue subido con éxito ';
 			if (!is_null($this->newName)) {
-				$result .= ', y fue renombrado ' . $this->newName;
+				$result .= ' y fue renombrado ' . $this->newName;
 			}
-			$result .= '.';
+			$result .= '';
 			$this->messages[] = $result;
 		} else {
 			$this->messages[] = 'No se pudo subir ' . $file['name'];
 		}
+		$this->fileName = $filename;
+	}
+
+	public function getName(){
+		return $this->fileName;
 	}
 }

@@ -58,6 +58,17 @@
   		$("input[type=file]").nicefileinput({ 
 			label : 'Subir Archivo' // Spanish label
 		});
+
+		// checar si se subió algún archivo
+		$('.NFI-button').click(function(){
+			console.log('nifa');
+			//$(this).find('#filename').click();
+			/*if(document.getElementById("uploadBox").value != "") {
+			   // you have a file
+			   console.log(1);
+			}*/
+		});
+		
 	
 	});	
 	
