@@ -91,7 +91,7 @@
 		<div id="paneles" class="section">
 			<h2>PANELES SOLARES</h2>
 			<hr>
-			<video class="video columna full" controls poster="<?php echo THEMEPATH; ?>images/paneles-poster.png">
+			<video class="video columna xmall-12 medium-10 large-8 center block" controls poster="<?php echo THEMEPATH; ?>images/paneles-poster.png">
 				<source src="<?php echo THEMEPATH; ?>vid/enso_paneles.mp4" type="video/mp4">
 			</video>
 			
@@ -136,7 +136,7 @@
 		<div id="calentadores" class="section">
 			<h2>BOILERS SOLARES</h2>
 			<hr>
-			<video class="video columna full" controls poster="<?php echo THEMEPATH; ?>images/boiler-poster.png">
+			<video class="video columna xmall-12 medium-10 large-8 center block" controls poster="<?php echo THEMEPATH; ?>images/boiler-poster.png">
 				<source src="<?php echo THEMEPATH; ?>vid/enso_calentadores.mp4" type="video/mp4">
 			</video>
 			<?php
