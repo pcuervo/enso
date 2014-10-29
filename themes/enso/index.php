@@ -283,7 +283,7 @@
 					<input type="hidden" name="MAX_FILE_SIZE" value="5000000" />
 					<label class="instruccion-upload" for="userfile">Tamaño máximo: 3.5MB</label>
 					<laber class="instruccion-upload" for="userfile">Formatos permitidos: JPEG, PNG y PDF.</label>
-					<input class="columna xsmall-12 center block" type="file" name="userfile" id="file">
+					<input class="columna xsmall-12 medium-4 center block" type="file" name="userfile" id="file">
 					<input class="columna xsmall-12 medium-4 center send-btn block" type="submit" value="ENVIAR" >
 				</form>
 			</div>
