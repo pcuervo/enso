@@ -69,7 +69,20 @@
 			}*/
 		});
 		
-	
+		// $(document).delegate('#play','click',function(){
+  //           $('.video')[0].play();
+  //       });
+  //       $(document).delegate('#play','click',function(){
+  //           $('.video')[0].pause();
+  //       });
+
+		$('.video').click(function() {
+		  if (this.paused == false) {
+		      this.pause();
+		  } else {
+		      this.play();
+		  }
+		});	
 	});	
 	
 	// Funciones
